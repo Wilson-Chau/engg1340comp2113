@@ -1,0 +1,26 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int row = 1;
+    
+    while ( row <= 13){
+        if ( row == 1 || row == 13 )
+            cout << "**********************" << endl;
+            
+        else if ( row == 2 || row == 12 )
+            cout << "*                    *" << endl;
+            
+        else if ( row == 7 )
+            cout << "* HHHHHHHH        II *" << endl;
+            
+        else
+            cout << "* HH    HH        II *" << endl;
+            
+        row++;
+    }
+
+    return 0;
+}
