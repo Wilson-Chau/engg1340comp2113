@@ -1,0 +1,9 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+  int product = 1LL*123456*654321%1000000000;
+  
+  return 0;
+}
