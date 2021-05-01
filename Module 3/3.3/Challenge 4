@@ -1,0 +1,18 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int input, digit, output = 0;
+    cin >> input;
+    
+    while ( input != 0 ){
+        digit = input % 10;
+        output = (output * 10) + digit;
+        input /= 10;
+    }
+    cout << output << endl;
+    
+    return 0;
+}
