@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int a1, a2, a3, a4, test, exam, average;
+    double a_weight, test_weight = 0.2;
+    double exam_weight = 0.6;
+    cout << "a1: ";
+    cin >> a1;
+    cout << "a2: ";
+    cin >> a2;
+    cout << "a3: ";
+    cin >> a3;
+    cout << "a4: ";
+    cin >> a4;
+    cout << "Test: ";
+    cin >> test;
+    cout << "Exam: ";
+    cin >> exam;
+    a_weight = ( a1 + a2 + a3 + a4 ) / 4;
+    average = a_weight + test * test_weight + exam * exam_weight;
+    cout << "Average: " << average << endl;
+
+    return 0;
+}
