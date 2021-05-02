@@ -1,0 +1,18 @@
+#include <iostream>
+
+using namespace std;
+
+char test_sign( double x ){
+    if ( x > 0 ) return 'P';
+    else return 'N';
+}
+
+int main()
+{
+    int num;
+    cin >> num;
+    
+    cout << test_sign( num ) << endl;
+
+    return 0;
+}
