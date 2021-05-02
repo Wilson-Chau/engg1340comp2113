@@ -1,0 +1,25 @@
+#include <iostream>
+
+using namespace std;
+
+bool is_perfect( int x ){
+    int sum = 0;
+    
+    for (int i = 1; i < x; i++){
+        if (x % i == 0) sum += i;
+    }
+    
+    if (sum == x) return 1;
+    else return 0;
+}
+
+int main()
+{
+    int num;
+    cin >> num;
+    
+    if (is_perfect(num)) cout << num << " is perfect number" << endl;
+    else cout << num << " is not a perfect number" << endl;
+
+    return 0;
+}
