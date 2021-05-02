@@ -1,0 +1,31 @@
+#include <iostream>
+
+using namespace std;
+
+double miles_per_gallon( double liters, double miles){
+    return miles / (liters * 0.264179);
+}
+
+int main()
+{
+    double mpg1, mpg2;
+    double liters, miles;
+    
+    cout << "Data of first car: ";
+    cin >> liters >> miles;
+    mpg1 = miles_per_gallon(liters, miles);
+    
+    cout << "Data of second car: ";
+    cin >> liters >> miles;
+    mpg2 = miles_per_gallon(liters, miles);
+    
+    cout << endl;
+    cout << "Miles per gallon deliverd by the first car = " << mpg1 << endl;
+    cout << "Miles per gallon deliverd by the second car = " << mpg2 << endl;
+    cout << endl;
+    if (mpg1 > mpg2) cout << "The first car has the best fuel efficiency" << endl;
+    else if (mpg2 > mpg1) cout << "The second car has the best fuel efficiency" << endl;
+    else cout << "Both cars have the same fuel effficiency" << endl;
+    
+    return 0;
+}
