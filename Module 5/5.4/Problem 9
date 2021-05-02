@@ -1,0 +1,24 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int p_sum = 0, n_sum = 0, sum = 0;
+    
+    for ( int i = 0; i < 5; i++ ){
+        int num;
+        cin >> num;
+        
+        if ( num > 0 ) p_sum += num;
+        else if ( num < 0 ) n_sum += num;
+        
+        sum += num;
+    }
+    
+    cout << "positive sum = " << p_sum << endl;
+    cout << "negative sum = " << n_sum << endl;
+    cout << "all sum = " << sum << endl;
+
+    return 0;
+}
