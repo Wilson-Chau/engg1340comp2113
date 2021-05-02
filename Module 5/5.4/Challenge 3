@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int row = 1;
+    while (row <= 7){
+        switch( row ){
+        case 1: case 7:
+            cout << "   *   " << endl;
+            row++;
+            break;
+        case 2: case 6:
+            cout << "  ***  " << endl;
+            row++;
+            break;
+        case 3: case 5:
+            cout << " ***** " << endl;
+            row++;
+            break;
+        case 4:
+            cout << "*******" << endl;
+            row++;
+            break;
+        }
+    }
+    
+    return 0;
+}
