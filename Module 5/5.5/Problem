@@ -1,0 +1,8 @@
+void swapfrontback(int numlist[], int count){
+    if (count == 0) cout << "the array is empty." << endl;
+    else{
+        int dummy = numlist[0];
+        numlist[0] = numlist[count - 1];
+        numlist[count - 1] = dummy;
+    }
+}
