@@ -1,0 +1,19 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    char charlist[8];
+    
+    for ( int i = 0; i < 8; i++ ){
+        cin >> charlist[i];
+    }
+    
+    for ( int i = 0; i < 8; i++ ){
+        cout << charlist[7 - i];
+    }
+    cout << endl;
+
+    return 0;
+}
