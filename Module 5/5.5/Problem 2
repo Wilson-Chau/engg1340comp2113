@@ -1,0 +1,26 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    bool numlist[1000];
+    
+    for ( int i = 2; i < 1000; i++ ){
+        numlist[i] = 1;
+    }
+    
+    for ( int i = 2; i < 1000; i++ ){
+        if ( numlist[i] ){
+            for ( int j = i + 1; j < 1000; j++ ){
+                if ( j % i == 0 ) numlist[j] = 0;
+            }
+        }
+    }
+    
+    for ( int i = 2; i < 1000; i++ ){
+        if ( numlist[i] ) cout << i << endl;
+    }
+
+    return 0;
+}
