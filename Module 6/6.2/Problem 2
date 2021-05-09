@@ -1,0 +1,7 @@
+#include <iostream>
+
+using namespace std;
+
+char toUpper(char c){
+    return (c - 'a' + 'A');
+}
