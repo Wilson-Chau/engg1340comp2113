@@ -1,0 +1,8 @@
+char toUpper2(char c[]){
+    int idx = 0;
+    
+    while (c[idx] != '\0'){
+        c[idx] = c[idx] - 'a' + 'A';
+        idx++;
+    }
+}
