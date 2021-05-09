@@ -1,0 +1,54 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int linearSearch(const int array[], int sizeOfArray, int key, int pos){
+    for (int i = pos; i < sizeOfArray; i++)
+        if (array[i] == key)
+            return i;
+    
+    return -1;
+}
+
+void print_array( const int array[], int sizeOfArray )
+{
+    for ( int i = 0; i < sizeOfArray; ++i )
+        cout << "[" << setw(2) << i << "] ";
+    cout << endl;
+
+    for ( int i = 0; i < sizeOfArray; ++i )
+        cout << setw(3) << array[i] << "  ";
+    cout << endl;
+}
+
+int main()
+{
+    const int arraySize = 9;  // size of array
+    int a[ arraySize ] = {1,2,2,2,5,6,2,3,3};         // declare array a
+    int searchKey;              // value to locate in array a
+
+    print_array( a, arraySize );
+
+    cout << "Enter an integer to search: ";
+    cin >> searchKey;
+
+    // try to locate searchKey in a and print all the position of the key
+    int pos = -1;
+    pos = linearSearch( a, arraySize, searchKey, pos + 1 );
+    
+    if (pos == -1)
+        cout << "Value not found" << endl;
+    else
+        cout << pos << " ";
+    
+    while (pos != -1){
+        pos = linearSearch( a, arraySize, searchKey, pos + 1 );
+        if (pos == -1)
+            break;
+        else
+            cout << pos << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
