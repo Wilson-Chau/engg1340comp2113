@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+
+void erase(char str[], int pos, int len){
+    int current;
+    
+    for (int i = 0; i < len; i++){
+        current = pos;
+        
+        while(str[current] != '\0'){
+            str[current] = str[current + 1];
+            current++;
+        }
+        
+        if (str[pos] != '\0')
+            str[current - 1] = str[current];
+    }
+}
+
+void print(char str[]){
+    int idx = 0;
+    
+    while (str[idx] != '\0'){
+        cout << str[idx];
+        idx++;
+    }
+    
+    cout << endl;
+}
+
+int main()
+{
+    char str[] = "Happy B-day";
+    erase(str, 8, 6);
+    print(str);
+    
+    return 0;
+}
