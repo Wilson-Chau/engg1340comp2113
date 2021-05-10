@@ -23,6 +23,9 @@ int main()
             break;
         
         cout << " " << pos;
+        
+        if (pos == 0)
+            break;
     }
     
     cout << endl;
