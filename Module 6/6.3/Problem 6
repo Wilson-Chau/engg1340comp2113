@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string  returnNickNameGivenLastName(string name[], int n, string lastName){
+    for (int i = 0; i < n; i++){
+        if (name[i].find(lastName) != -1){
+            int start = name[i].find("(");
+            int end = name[i].find(")");
+            return name[i].substr(start + 1, end - start - 1);
+        }
+    }
+    
+    return "Not found!";
+}
+
+int main()
+{
+	string name[] = {"Loretta, Choi (Loretta)",
+	                 "Kin Hei, Kwok (Haley)",
+	                 "Tsz Hei, Tse (Henry)",
+	                 "Luv, Khanna (Luv)",
+	                 "Tsz Wa, Tseng (Lucas)",
+	                 "Tsz Ching, Fund (Sara)"};
+	                 
+	int numOfUsers = 6;
+	string lastName;
+	cin >> lastName;
+	cout << returnNickNameGivenLastName(name, numOfUsers, lastName) << endl;
+	
+	return 0;
+}
