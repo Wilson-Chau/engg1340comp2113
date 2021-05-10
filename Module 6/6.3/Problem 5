@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+void replaceAll(string &input, string from, string to){
+    int pos = -1;
+    pos = input.find(from, pos + 1);
+    
+    if (pos != -1)
+        input.replace(pos, from.length(), to);
+    
+    while (pos != -1){
+        pos = input.find(from, pos + 1);
+        
+        if (pos != -1)
+            input.replace(pos, from.length(), to);
+    }
+}
+
+int main()
+{
+	string input;
+	getline(cin, input);
+	cout << "Before replace:" << endl << input << endl;
+	replaceAll(input, "HKU", "The University of Hong Kong");
+	cout << "After replace:" << endl << input << endl;
+	replaceAll(input, "The University of Hong Kong", "H.K.U");
+	cout << "After replace:" << endl << input << endl;
+
+	return 0;
+}
