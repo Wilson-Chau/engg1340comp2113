@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+
+using namespace std;
+
+bool isPalindrome(string s, int len){
+    for (int i = 0; i < len/2; ++i){
+		if (s[i] != s[len - 1 - i])
+		    return 0;
+	}
+	
+	return 1;
+}
+
+string remove_symbol(string s){
+    string output = "";
+    
+    for (int i = 0; i < s.length(); i++){
+        if (isalpha(s[i]))
+            output += tolower(s[i]);
+    }
+    
+    return output;
+}
+
+int main()
+{
+	string text;
+
+	getline(cin, text);
+	text = remove_symbol(text);
+	int length = text.length();			// string length
+
+    if (isPalindrome(text, length))
+		cout << text << " is a palindrome" << endl;
+	else
+		cout << text << " is not a palindrome" << endl;
+
+	return 0;
+}
