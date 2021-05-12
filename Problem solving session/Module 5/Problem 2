@@ -1,0 +1,35 @@
+#include <iostream>
+
+using namespace std;
+
+int findMax(int a[], int aSize){
+    int max = 0;
+    
+    for (int i = 0; i < aSize; i++){
+        if (a[i] >= max)
+            max = i;
+    }
+    
+    return max;
+}
+
+int main()
+{
+    int freq[11] = {};
+    int input;
+    cin >> input;
+    
+    while (input != -1){
+        freq[input]++;
+        cin >> input;
+    }
+    
+    cout << "Frequencies of each number: " << endl;
+    for (int i = 0; i < 11; i++){
+        cout << i << " " << freq[i] << endl;
+    }
+    
+    cout << "Mode: " << findMax(freq, 11) << endl;
+    
+    return 0;
+}
