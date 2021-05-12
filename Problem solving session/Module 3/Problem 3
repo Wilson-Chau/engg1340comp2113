@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    int year;
+    cout << "Your input year: ";
+    cin >> year;
+    
+    while (year != 0){
+        
+        // deal with the thousands
+        int thousand = year / 1000;
+        if (thousand == 1)
+            cout << "Transformed year: M";
+        else
+            cout << "Transformed year: MM";
+        
+        // deal with the hundreds
+        int hundred = (year % 1000) / 100;
+        string h_year[10] = {"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+        cout << h_year[hundred];
+        
+        // deal with the tens
+        int ten = (year % 100) / 10;
+        string t_year[10] = {"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+        cout << t_year[ten];
+        
+        // deal with the digit
+        int digit = year % 10;
+        string d_year[10] = {"","I","II","III","IV","V","VI","VII","VIII","IX"};
+        cout << d_year[digit] << endl;
+        
+        cout << "Your input year: ";
+        cin >> year;
+    }
+    
+    return 0;
+}
