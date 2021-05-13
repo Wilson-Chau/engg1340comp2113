@@ -1,1 +1,81 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
 
+using namespace std;
+
+void swap(int &a, int &b)
+{
+     int tmp = a;
+     a = b;
+     b = tmp;
+     return;
+}
+
+void sort(int array[], int sizeOfArray )
+{
+	int i, j, idx;
+	int max;
+
+	for ( i = 0; i < sizeOfArray; ++i )
+	{
+		max = array[i];
+		idx = i;
+		for ( j = i + 1; j < sizeOfArray; ++j )
+		{
+			if ( array[j] > max )
+			{
+				max = array[j];
+				idx = j;
+			}
+		}
+		if ( idx != i )
+			swap( array[i], array[idx] ); 	// swap values
+	}
+}
+
+int main()
+{
+    cout << "Please input the file: ";
+    string file;
+    cin >> file;
+    
+    ifstream fin;
+    fin.open(file.c_str());
+    
+    if (fin.fail()){
+        cout << "Error in opening file" << endl;
+        exit(1);
+    }
+    
+    ofstream fout;
+    fout.open("text2.txt");
+    
+    if (fout.fail()){
+        cout << "Error in opening file" << endl;
+        exit(1);
+    }
+    
+    string num_str;
+    int numlist[99];
+    int num;
+    while (getline(fin, num_str)){
+        int count = 0;
+        istringstream line_in(num_str);
+        
+        while (line_in >> num){
+            numlist[count++] = num;
+        }
+        
+        sort(numlist, count);
+        
+        for (int i = 0; i < count; i++){
+            fout << numlist[i] << ' ';
+        }
+        
+        fout << endl;
+    }
+
+    return 0;
+}
