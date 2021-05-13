@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+int main()
+{
+    cout << "Please input the file name: ";
+    string file;
+    cin >> file;
+    
+    ifstream fin;
+    fin.open(file.c_str());
+    
+    if (fin.fail()){
+        cout << "Error in opening file" << endl;
+        exit(1);
+    }
+    
+    string s;
+    getline(fin, s);
+    
+    istringstream line_in(s);
+    int count = 0;
+    string word;
+    
+    while(line_in >> word){
+        if(count % 2 != 0)
+            cout << word << ' ';
+        
+        count++;
+    }
+    
+
+    return 0;
+}
