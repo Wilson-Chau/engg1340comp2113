@@ -1,0 +1,80 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+using namespace std;
+
+// 2D point
+struct Point
+{
+    double x;
+    double y;
+};
+
+// distance between two points p and q
+double point_distance( Point p, Point q )
+{
+    double dx = p.x - q.x;
+    double dy = p.y - q.y;
+    return sqrt( dx * dx + dy * dy );
+}
+
+// get a point from user input
+Point input_point() {
+    double x, y;
+    cin >> x >> y;
+    Point p = { x, y };
+    return p;
+}
+
+// swap two points p and q
+void swap( Point &p, Point &q ) {
+    Point temp = p;
+    p = q;
+    q = temp;
+}
+
+Point midpoint( Point p, Point q ){
+    Point m;
+    m.x = (p.x + q.x) / 2;
+    m.y = (p.y + q.y) / 2;
+    
+    return m;
+}
+
+void shrink_line( Point &p, Point &q ){
+    Point p_new, q_new;
+    
+    p_new.x = (p.x * 3 + q.x) / 4;
+    p_new.y = (p.y * 3 + q.y) / 4;
+    
+    q_new.x = (p.x + q.x * 3) / 4;
+    q_new.y = (p.y + q.y * 3) / 4;
+    
+    p = p_new;
+    q = q_new;
+}
+
+int main()
+{
+    cout << "Input 1st point (x,y): ";
+    Point a = input_point();
+
+    cout << "Input 2nd point (x,y): ";
+    Point b = input_point();
+
+    cout << "Distance between point: " << point_distance(a, b) << endl;
+
+    swap(a, b);
+    cout << "1st point: " << a.x << ' ' << a.y << endl;
+    cout << "2nd point: " << b.x << ' ' << b.y << endl;
+    
+    Point m = midpoint(a, b);
+    cout << "The midpoint: " << m.x << ' ' << m.y << endl;
+    
+    shrink_line(a, b);
+    cout << "The shrinked 1st point: " << a.x << ' ' << a.y << endl;
+    cout << "The shrinked 2nd point: " << b.x << ' ' << b.y << endl;
+
+
+    return 0;
+}
