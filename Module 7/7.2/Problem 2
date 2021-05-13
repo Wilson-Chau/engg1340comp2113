@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Entry{
+    string firstName;
+    string lastName;
+    char dorm;
+    int age;
+};
+
+bool equal(Entry e1, Entry e2){
+    return(e1.firstName == e2.firstName && e1.lastName == e2.lastName && e1.dorm == e2.dorm && e1.age == e2.age);
+}
+
+int main()
+{
+    Entry e1 = {"Harry", "Potter", 'C', 25};
+    Entry e2 = {"James", "Bond", 'D', 40};
+    
+    if (equal(e1, e2))
+        cout << "same" << endl;
+    else
+        cout << "different" << endl;
+
+    return 0;
+}
