@@ -1,0 +1,90 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
+
+using namespace std;
+
+struct Entry{
+    string firstName;
+    string lastName;
+    char dorm;
+    int age;
+};
+
+void swap(int &a, int &b)
+{
+     int tmp = a;
+     a = b;
+     b = tmp;
+     return;
+}
+
+void sort(Entry array[], int sizeOfArray )
+{
+	int i, j, idx;
+	int min;
+
+	for ( i = 0; i < sizeOfArray; ++i )
+	{
+		min = array[i].age;
+		idx = i;
+		for ( j = i + 1; j < sizeOfArray; ++j )
+		{
+			if ( array[j].age < min )
+			{
+				min = array[j].age;
+				idx = j;
+			}
+		}
+		if ( idx != i )
+			swap( array[i], array[idx] ); 	// swap values
+	}
+}
+
+void print_array( const Entry array[], int sizeOfArray )
+{
+    for ( int i = 0; i < sizeOfArray; ++i )
+        cout << array[i].firstName << ' ' << array[i].lastName << ' ' << array[i].dorm << ' ' << array[i].age << endl;
+}
+
+int main()
+{
+    cout << "Please input the file: ";
+    string file;
+    cin >> file;
+    
+    ifstream fin;
+    fin.open(file.c_str());
+    
+    if (fin.fail()){
+        cout << "Error in opening file" << endl;
+        exit(1);
+    }
+    
+    string entry;
+    int count = 0;
+    Entry entry_list[100];
+    
+    while (getline(fin, entry)){
+        istringstream line_in(entry);
+        
+        for (int i = 0; i < 4; i++){
+            if (i == 0)
+                line_in >> entry_list[count].firstName;
+            else if (i == 1)
+                line_in >> entry_list[count].lastName;
+            else if (i == 2)
+                line_in >> entry_list[count].dorm;
+            else
+                line_in >> entry_list[count].age;
+        }
+        
+        count++;
+    }
+    
+    sort(entry_list, count);
+    print_array(entry_list, count);
+
+    return 0;
+}
