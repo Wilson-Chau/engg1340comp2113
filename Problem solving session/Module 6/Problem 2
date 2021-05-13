@@ -1,0 +1,75 @@
+// Part a(i)
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    printf("Please input a character : ");
+    char input;
+    scanf("%c", &input);
+    
+    if (isalpha(input))
+        printf("The character %c is an alphabet.\n", input);
+    else if (isdigit(input))
+        printf("The character %c is a digit.\n", input);
+    else
+        printf("The character %c is neither an alphabet nor a digit.\n", input);
+
+    return 0;
+}
+
+//Part a(ii)
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    printf("Please input a character : ");
+    char input;
+    scanf("%c", &input);
+    
+    if ((input >= 65 && input <= 90) || (input >= 97 && input <= 122))
+        printf("The character %c is an alphabet.\n", input);
+    else if (input >= 48 && input <= 57)
+        printf("The character %c is a digit.\n", input);
+    else
+        printf("The character %c is neither an alphabet nor a digit.\n", input);
+
+    return 0;
+}
+
+//Part b(i)
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    printf("Please input a string : ");
+    char input[99];
+    scanf("%s", input);
+    
+    int len = strlen(input);
+    printf("The length of string \"%s\" is %d\n", input, len);
+
+    return 0;
+}
+
+//Part b(ii)
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    printf("Please input a string : ");
+    char input[99];
+    scanf("%s", input);
+    
+    int len = 0;
+    while(input[len] != '\0'){
+        len++;
+    }
+    
+    printf("The length of string \"%s\" is %d\n", input, len);
+
+    return 0;
+}
