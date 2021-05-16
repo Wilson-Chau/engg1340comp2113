@@ -1,0 +1,127 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <cctype>
+
+using namespace std;
+
+string word_list[100];
+int count_list[100];
+int word_num = 0;
+
+void remove_punct(string &line){
+    string new_line = "";
+    
+    for (int i = 0; i < line.length(); i++){
+        if (!ispunct(line[i]))
+            new_line = new_line + line[i];
+    }
+    
+    line = new_line;
+}
+
+void s_tolower(string &s){
+    for(int i = 0; i < s.length(); i++){
+        if (isupper(s[i]))
+            s[i] = tolower(s[i]);
+    }
+}
+
+bool exist(string word){
+    for(int i = 0; i < word_num; i++){
+        if (word_list[i] == word)
+            return 1;
+    }
+    
+    return 0;
+}
+
+int search(string word){
+    for (int i = 0; i < word_num; i++){
+        if (word_list[i] == word)
+            return i;
+    }
+}
+
+void int_swap(int &a, int &b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void string_swap(string &a, string &b){
+    string temp = a;
+    a = b;
+    b = temp;
+}
+
+void sort(){
+    for(int i = 0; i < word_num; i++){
+        int min = count_list[i];
+        int min_idx = i;
+        
+        for (int j = i + 1; j < word_num; j++){
+            if(count_list[j] < min){
+                min = count_list[j];
+                min_idx = j;
+            }
+            else if(count_list[j] == min){
+                if(word_list[j] < word_list[min_idx]){
+                    min = count_list[j];
+                    min_idx = j;
+                }
+            }
+        }
+        
+        int_swap(count_list[i], count_list[min_idx]);
+        string_swap(word_list[i], word_list[min_idx]);
+    }
+}
+
+int main()
+{
+    // open the file
+    cout << "Please input the file: ";
+    string file;
+    cin >> file;
+    
+    ifstream fin;
+    fin.open(file.c_str());
+    
+    if (fin.fail()){
+        cout << "Error in opening file." << endl;
+        exit(1);
+    }
+    
+    //loop through the file to get all the words and counts
+    string sentence;
+    
+    while(getline(fin, sentence)){
+        remove_punct(sentence);
+        istringstream line_in(sentence);
+        
+        string word;
+        
+        while(line_in >> word){
+            s_tolower(word);
+            
+            if(exist(word)){
+                int idx = search(word);
+                count_list[idx]++;
+            } else{
+                word_list[word_num++] = word;
+                count_list[word_num - 1]++;
+            }
+        }
+    }
+    
+    // output the result
+    sort();
+    
+    for(int i = 0; i < word_num; i++){
+        cout << word_list[i] << ' ' << count_list[i] << endl;
+    }
+    
+    return 0;
+}
