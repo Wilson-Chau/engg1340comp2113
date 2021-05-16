@@ -307,7 +307,7 @@ void grow_phonebook(PhoneRec * &pb, int &pb_size, int n)
 
 	// Step 4:
 	// update the size of the array
-    pb_size += n;
+        pb_size += n;
 
 	cout << "--->phonebook size enlarged to hold a maximum of " << pb_size << " records." << endl;
 	
