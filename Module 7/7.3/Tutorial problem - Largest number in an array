@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int largest_iterative(int a[], int a_size){
+    max = -1;
+    
+    for(int i = 0; i < a_size; i++){
+        if(max < a[i])
+            max = a[i];
+    }
+    
+    return max;
+}
+
+int largest_recursive(int a[], int a_size){
+    if (a_size < 1)
+        return -1;
+    
+    int x = largest_recursive(a, a_size - 1);
+    if (a[a_size - 1] > x)
+        return a[a_size - 1];
+    else
+        return x;
+}
+
+int main()
+{
+    srand(time(NULL));
+    const int array_size = 10;
+    int num_array[array_size];
+    
+    for(int i = 0; i < array_size; i++){
+        num_array[i] = rand() % 100 + 1;
+    }
+    
+    cout << "Array content: ";
+    for (int i = 0; i < array_size; i++){
+        cout << num_array[i] << ' ';
+    }
+    cout << endl;
+    
+    cout << "The largest element = " << largest_iterative(num_array, array_size) << endl;
+    cout << "The largest element = " << largest_recursive(num_array, array_size) << endl;
+
+    return 0;
+}
