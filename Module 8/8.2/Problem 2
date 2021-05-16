@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string *addEntry(string *array, int &size, string newEntry){
+    string *array_new = new string [size + 1];
+    
+    for (int i = 0; i < size; i++){
+        array_new[i] = array[i];
+    }
+    
+    array_new[size] = newEntry;
+    
+    delete [] array;
+    array = array_new;
+    size++;
+    return array;
+}
+
+string *deleteEntry(string *array, int &size, string entryToDelete){
+    bool found = 0;
+    
+    for (int i = 0; i < size; i++){
+        if (array[i] == entryToDelete)
+            found = 1;
+    }
+    
+    if (found == 0)
+        return array;
+    
+    string *array_new = new string [size - 1];
+    
+    for (int i = 0; i < size; i++){
+        if (array[i] == entryToDelete)
+            continue;
+        
+        array_new[i] = array[i];
+    }
+    
+    delete [] array;
+    array = array_new;
+    size--;
+    return array;
+}
