@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Book{
+   string name;
+   string author;
+   int call_number;
+   string subject;
+};
+typedef struct Book Book;
+
+// declare the global variable
+Book book_record[100];
+int record_num = 0;
+
+bool equal(const Book a, const Book b){
+    return (a.name == b.name && a.author == b.author && a.call_number == b.call_number && a.subject == b.subject);
+}
+
+void input(const Book book){
+    book_record[record_num].name = book.name;
+    book_record[record_num].author = book.author;
+    book_record[record_num].call_number = book.call_number;
+    book_record[record_num].subject = book.subject;
+    
+    record_num++;
+}
+
+void search(const Book book){
+    bool found = 0;
+    for (int i = 0; i < record_num; i++){
+        if (equal(book_record[i], book)){
+            cout << "The book is in the library." << endl;
+            found = 1;
+            break;
+        }
+    }
+    
+    if (!found)
+        cout << "The book is not in the library." << endl;
+}
+
+int main()
+{
+    string command;
+    
+    while(cin >> command){
+        if (command == "Input"){
+            Book book;
+            cin >> book.name >> book.author >> book.call_number >> book.subject;
+            
+            input(book);
+        }
+        if (command == "Search"){
+            Book book;
+            cin >> book.name >> book.author >> book.call_number >> book.subject;
+            
+            search(book);
+        }
+        if (command == "Exit"){
+            return 0;
+        }
+    }
+}
