@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+// a function void addOne(int &p) which adds 1 to the integer referenced by p
+void addOne_by_reference(int &p){
+    p++;
+}
+
+int main(){
+    int p = 3;
+    addOne_by_reference(p);
+    
+    return 0;
+}
+
+// a function void addOne(int &p) which adds 1 to the integer referenced by p
+void addOne_by_pointer(int *p){
+    (*p)++;
+}
+
+int main()
+{
+    int x = 3;
+    int *ptr = &x;
+    
+    addOne_by_pointer(ptr);
+
+    return 0;
+}
