@@ -1,0 +1,13 @@
+void reverse(Node *&head){
+    Node *head_new = NULL;
+    Node *current = new Node;
+    current = head;
+    
+    while(current != NULL){
+        head_insert(head_new, current->info);
+        current = current->next;
+    }
+    
+    delete head;
+    head = head_new;
+}
