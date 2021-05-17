@@ -1,0 +1,88 @@
+struct Node{
+    int info;
+    Node *next;
+};
+
+void head_insert(Node * &head, int num){
+    Node *p = new Node;
+    p->info = num;
+    p->next = head;
+    head = p;
+}
+
+Node *find_prev(Node *head, int num){
+    if(head == NULL || head->info >= num)
+        return NULL;
+    
+    Node *current = head;
+    while(current->next != NULL){
+        if(current->next->info >= num)
+            return current;
+        else
+            current = current->next;
+    }
+    
+    return current;
+}
+
+void insert(Node *after, int num){
+    Node *p = new Node;
+    p->info = num;
+    p->next = after->next;
+    after->next = p;
+}
+
+void sort(Node * &head){
+    Node *head_new = NULL, *after;
+    int num = head->info;
+    
+    while(head != NULL){
+        after = find_prev(head_new, num);
+        
+        if (after == NULL)
+            head_insert(head_new, num);
+        else
+            insert(after, num);
+        
+        Node *p = head;
+        head = p->next;
+        delete p;
+        if (head != NULL)
+            num = head->info;
+    }
+    
+    delete head;
+    head = head_new;
+}
+
+void print_list(Node *head){
+    Node *current = head;
+    
+    while(current != NULL){
+        cout << current->info << ' ';
+        current = current->next;
+    }
+    
+    cout << endl;
+}
+
+int main()
+{
+    Node *head = NULL;
+    
+    int num;
+    cin >> num;
+    
+    while(num != -999){
+        head_insert(head, num);
+        cin >> num;
+    }
+    
+    print_list(head);
+    
+    sort(head);
+
+    print_list(head);
+
+    return 0;
+}
