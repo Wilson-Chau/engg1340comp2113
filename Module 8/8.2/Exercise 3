@@ -10,6 +10,21 @@ void head_insert(Node * &head, int num){
     head = p;
 }
 
+void tail_insert(Node * &head, Node * &tail, int num){
+    Node *p = new Node;
+    p->info = num;
+    p->next = NULL;
+    
+    if (head == NULL){
+        head = p;
+        tail = p;
+    }
+    else{
+        tail->next = p;
+        tail = p;
+    }
+}
+
 Node *find_prev(Node *head, int num){
     if(head == NULL || head->info >= num)
         return NULL;
@@ -66,6 +81,7 @@ void print_list(Node *head){
     cout << endl;
 }
 
+// for backward built linked list
 int main()
 {
     Node *head = NULL;
@@ -77,12 +93,27 @@ int main()
         head_insert(head, num);
         cin >> num;
     }
-    
+ 
+    sort(head);
     print_list(head);
+
+    return 0;
+}
+
+// for forward built linked list
+int main(){
+    Node *head = NULL, *tail = NULL;
+    
+    int num;
+    cin >> num;
+    
+    while(num != -999){
+        tail_insert(head, tail, num);
+        cin >> num;
+    }
     
     sort(head);
-
     print_list(head);
-
+    
     return 0;
 }
