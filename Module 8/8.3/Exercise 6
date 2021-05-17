@@ -1,0 +1,96 @@
+#include <iostream>
+
+using namespace std;
+
+struct Node
+{
+	int info;
+	Node * next;
+};
+
+void print_list(Node * head)
+{
+    Node * current = head;
+	while (current != NULL){
+		cout << current->info << " -> ";
+		current = current->next;
+	}
+	cout << "NULL\n";
+}
+
+void tail_insert(Node * & head,
+	Node * & tail, int num)
+{
+	Node * p = new Node;
+	p->info = num;
+	p->next = NULL;
+
+	if (head == NULL) {
+		head = p;
+		tail = p;
+	}
+	else {
+		tail->next = p;
+		tail = p;
+	}
+}
+
+int length(Node *head){
+    Node *current = head;
+    int len = 0;
+    
+    while(current != NULL){
+        len++;
+        current = current->next;
+    }
+    
+    return len;
+}
+
+void delete_list(Node *head){
+    while(head != NULL){
+        Node *p = head;
+        head = p->next;
+        delete p;
+    }
+}
+
+void divide(Node * &head, Node * &second){
+    if (head == NULL){
+        second = NULL;
+        return;
+    }
+    
+    Node *current = head;
+    int head_len = length(head) / 2;
+    
+    for(int i = 0; i < head_len; i++){
+        current = current->next;
+    }
+    
+    second = current->next;
+    current->next = NULL;
+}
+
+int main()
+{
+    Node * head = NULL, * tail = NULL;
+    int num = 0;
+
+    cout << "input integers (-999 to end): ";
+    cin >> num;
+    while ( num != -999 ) {
+        tail_insert(head, tail, num);
+        cin >> num;
+    }
+
+    print_list(head);
+    
+    cout << endl;
+    Node *second = NULL;
+    divide(head, second);
+    print_list(head);
+    print_list(second);
+
+    return 0;
+}
