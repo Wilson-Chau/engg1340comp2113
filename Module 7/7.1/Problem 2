@@ -20,19 +20,18 @@ int main()
     }
     
     string s;
-    getline(fin, s);
-    
-    istringstream line_in(s);
-    int count = 0;
-    string word;
-    
-    while(line_in >> word){
-        if(count % 2 != 0)
-            cout << word << ' ';
+    while(getline(fin, s)){
+        istringstream line_in(s);
+        int count = 0;
+        string word;
         
-        count++;
+        while(line_in >> word){
+            if(count % 2 != 0)
+                cout << word << ' ';
+        
+            count++;
+        }
     }
-    
 
     return 0;
 }
